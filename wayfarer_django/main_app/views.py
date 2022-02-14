@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.views import View 
 from django.views.generic.base import TemplateView
-from .models import Country, City
+from .models import Country, City, Post, Comment, Profile
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse
@@ -35,13 +35,13 @@ class Post(TemplateView):
             context["header"] = f"Searching for {name}"
         else:
             context["posts"] = Post.objects.filter(Country.objects.filter(user=self.request.user))
-            context["header"] = "The Perfect Gift for Loved One."
+            context["header"] = "The Perfect City to visit."
         return context
 
 
 class PostCreate(CreateView):
     model = Post
-    fields = ['name', 'image', 'price']
+    fields = ['title', 'content','date']
     template_name = "post_create.html"
 
     def form_valid(self, form):
@@ -53,7 +53,7 @@ class PostCreate(CreateView):
         return reverse('post_detail', kwargs={'pk': self.object.pk})
 
 class PostDetail(DetailView):
-    model = Country
+    model = Post
     template_name = "post_detail.html"
 
     def get_context_data(self, **kwargs):
@@ -63,7 +63,7 @@ class PostDetail(DetailView):
 
 class PostUpdate(UpdateView):
     model = Post
-    fields = ['content','date']
+    fields = ['title','content','date']
     template_name = "post_update.html"
 
     def get_success_url(self):
@@ -86,7 +86,7 @@ class Signup(View):
         if form.is_valid():
             user= form.save()
             login(request, user)
-            return redirect("home")
+            return redirect("profile")
         else:
             context = {"form": form}
             return render(request, "registration/signup.html", context)
