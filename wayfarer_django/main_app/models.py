@@ -21,7 +21,7 @@ class Post(models.Model):
     content = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    city = models.ManyToManyField(City, on_delete=CASCADE)
+    city = models.ForeignKey(City, on_delete=CASCADE)
 
 class Comment(models.Model):
     content = models.TextField()
