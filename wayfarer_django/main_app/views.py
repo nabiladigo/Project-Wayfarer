@@ -94,4 +94,4 @@ class Signup(View):
 
 
 class Profile(TemplateView):
-    tamplate_name ="profile.html"
+    template_name ="profile.html"
