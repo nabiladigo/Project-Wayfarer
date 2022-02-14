@@ -21,13 +21,13 @@ class Post(models.Model):
     content = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    city = models.ForeignKey(City, on_delete=CASCADE)
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
 
 class Comment(models.Model):
     content = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(Profile,on_delete=CASCADE)
-    post = models.ForeignKey(Post, on_delete=CASCADE)
+    author = models.ForeignKey(Profile,on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
 
 
