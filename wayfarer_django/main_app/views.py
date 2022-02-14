@@ -35,13 +35,13 @@ class Post(TemplateView):
             context["header"] = f"Searching for {name}"
         else:
             context["posts"] = Post.objects.filter(Country.objects.filter(user=self.request.user))
-            context["header"] = "The Perfect Gift for Loved One."
+            context["header"] = "The Perfect City to visit."
         return context
 
 
 class PostCreate(CreateView):
     model = Post
-    fields = ['name', 'image', 'price']
+    fields = ['title', 'content','date']
     template_name = "post_create.html"
 
     def form_valid(self, form):
@@ -63,7 +63,7 @@ class PostDetail(DetailView):
 
 class PostUpdate(UpdateView):
     model = Post
-    fields = ['content','date']
+    fields = ['title','content','date']
     template_name = "post_update.html"
 
     def get_success_url(self):
