@@ -25,42 +25,56 @@ class About(TemplateView):
 
 # @method_decorator(login_required, name='dispatch')    
 
-# class Country(TemplateView):
-#     template_name = "country.html"
+class Post(TemplateView):
+    template_name = "post.html"
     
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         name = self.request.GET.get("name")
-#         if name != None:
-#             context["countries"] = Country.objects.filter(Country.objects.filter(user=self.request.user),name__icontains=name)
-#             context["header"] = f"Searching for {name}"
-#         else:
-#             context["countries"] = Country.objects.filter(Country.objects.filter(user=self.request.user))
-#             context["header"] = "The Perfect Gift for Loved One."
-#         return context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        name = self.request.GET.get("name")
+        if name != None:
+            context["posts"] = Post.objects.filter(Country.objects.filter(user=self.request.user),name__icontains=name)
+            context["header"] = f"Searching for {name}"
+        else:
+            context["posts"] = Post.objects.filter(Country.objects.filter(user=self.request.user))
+            context["header"] = "The Perfect Gift for Loved One."
+        return context
 
 
-# class CountryCreate(CreateView):
-#     model = Country
-#     fields = ['name', 'image', 'price']
-#     template_name = "country_create.html"
+class PostCreate(CreateView):
+    model = Post
+    fields = ['name', 'image', 'price']
+    template_name = "post_create.html"
 
-#     def form_valid(self, form):
-#         form.instance.user = self.request.user
-#         return super(CountryCreate, self).form_valid(form)
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(PostCreate, self).form_valid(form)
 
-#     def get_success_url(self):
-#         print(self.kwargs)
-#         return reverse('country_detail', kwargs={'pk': self.object.pk})
+    def get_success_url(self):
+        print(self.kwargs)
+        return reverse('post_detail', kwargs={'pk': self.object.pk})
 
-# class CountryDetail(DetailView):
-#     model = Country
-#     template_name = "country_detail.html"
+class PostDetail(DetailView):
+    model = Country
+    template_name = "post_detail.html"
 
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         # context["giftset"] = GiftSet.objects.all()
-#         return context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["posts"] = Post.objects.all()
+        return context
+
+class PostUpdate(UpdateView):
+    model = Post
+    fields = ['content','date']
+    template_name = "post_update.html"
+
+    def get_success_url(self):
+        return reverse('post_detail', kwargs={'pk': self.object.pk})
+
+class PostDelete(DeleteView):
+    model = Post
+    template_name = "post_delete_confirmation.html"
+    success_url = "/posts/"
+
 
 class Signup(View):
     def get(self, request):
