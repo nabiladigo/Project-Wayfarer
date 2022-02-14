@@ -1,3 +1,4 @@
+from pipes import Template
 from django.shortcuts import redirect, render
 from django.views import View 
 from django.views.generic.base import TemplateView
@@ -91,3 +92,6 @@ class Signup(View):
             context = {"form": form}
             return render(request, "registration/signup.html", context)
 
+
+class Profile(TemplateView):
+    tamplate_name ="profile.html"
