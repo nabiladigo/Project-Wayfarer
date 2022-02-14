@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_pic = models.CharField(max_length=255)
-    current_city = models.ForeignKey('City',on_delete=models.SET_NULL)
+    current_city = models.ForeignKey('City',null=True, on_delete=models.SET_NULL)
 
 class Country(models.Model):
     name = models.CharField(max_length=100)
