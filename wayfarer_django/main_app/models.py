@@ -18,6 +18,7 @@ class City(models.Model):
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
 
 class Post(models.Model):
+    title = models.CharField(max_length=255)
     content = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(Profile, on_delete=models.CASCADE)
