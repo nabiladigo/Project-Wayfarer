@@ -53,7 +53,7 @@ class PostCreate(CreateView):
         return reverse('post_detail', kwargs={'pk': self.object.pk})
 
 class PostDetail(DetailView):
-    model = Country
+    model = Post
     template_name = "post_detail.html"
 
     def get_context_data(self, **kwargs):
@@ -86,7 +86,7 @@ class Signup(View):
         if form.is_valid():
             user= form.save()
             login(request, user)
-            return redirect("home")
+            return redirect("profile")
         else:
             context = {"form": form}
             return render(request, "registration/signup.html", context)
