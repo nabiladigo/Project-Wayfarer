@@ -11,14 +11,17 @@ class Profile(models.Model):
 
 class Country(models.Model):
     name = models.CharField(max_length=100)
+    image = models.CharField(max_length=250)
 
 
 class City(models.Model):
     name = models.CharField(max_length=100)
+    image = models.CharField(max_length=250)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
+    image = models.CharField(max_length=250)
     content = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(Profile, on_delete=models.CASCADE)
@@ -26,6 +29,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     content = models.TextField()
+    
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(Profile,on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
