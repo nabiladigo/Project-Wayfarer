@@ -30,13 +30,7 @@ class Post(TemplateView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        name = self.request.GET.get("name")
-        if name != None:
-            context["posts"] = Post.objects.filter(Country.objects.filter(user=self.request.user),name__icontains=name)
-            context["header"] = f"Searching for {name}"
-        else:
-            context["posts"] = Post.objects.filter(Country.objects.filter(user=self.request.user))
-            context["header"] = "The Perfect City to visit."
+        
         return context
 
 
@@ -95,3 +89,19 @@ class Signup(View):
 
 class Profile(TemplateView):
     template_name ="profile.html"
+
+class Caribbean(TemplateView):
+    template_name ="caribbean.html"
+
+class Africa(TemplateView):
+    template_name ="africa/africa.html"
+
+class Europe(TemplateView):
+    template_name ="europe.html"
+
+class Ocean(TemplateView):
+    template_name ="oceans.html"
+
+
+
+
