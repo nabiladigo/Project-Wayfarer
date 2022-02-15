@@ -86,7 +86,7 @@ class Signup(View):
             context = {"form": form}
             return render(request, "registration/signup.html", context)
 
-
+          
 class Profile(TemplateView):
     template_name ="profile.html"
 
