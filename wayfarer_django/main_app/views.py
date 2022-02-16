@@ -87,8 +87,11 @@ class Signup(View):
             return render(request, "registration/signup.html", context)
 
           
-class Profile(TemplateView):
+class Profile(DetailView):
+    model = Profile
     template_name ="profile.html"
+
+
 
 class Caribbean(TemplateView):
     template_name ="caribbean.html"
