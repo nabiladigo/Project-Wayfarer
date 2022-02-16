@@ -1,22 +1,22 @@
-from unicodedata import name
 from django.urls import path
 from . import views
 
 urlpatterns = [
     path('', views.Home.as_view(), name="home"),  
     path('about/', views.About.as_view(), name="about"),
+
     path('profile/<int:pk>', views.Profile.as_view(), name="profile"),
     path('accounts/signup/', views.Signup.as_view(), name="signup"),
+
     path('cities/', views.CityList.as_view(), name= "city"),
+    path('cities/<int:pk>/', views.CityDetail.as_view(), name= "city_detail"),
+
     path('posts/', views.Posts.as_view(), name="post"),
     path('posts/new/', views.PostCreate.as_view(), name="post_create"),
     path('posts/<int:pk>/', views.PostDetail.as_view(), name="post_detail"),
     path('posts/<int:pk>/update',views.PostUpdate.as_view(), name="post_update"),
     path('posts/<int:pk>/delete',views.PostDelete.as_view(), name="post_delete"),
-    # path('Caribbean/', views.Caribbean.as_view(), city ="caribbean"),
-    # path('France/', views.France.as_view(), city ="france"),
-    # path('Morocco/', views.Morocco.as_view(), city ="morocco"),
-    # path('Ocean/', views.Ocean.as_view(), city ="ocean"),
-    # path('Emirates/', views.Ocean.as_view(), city ="emirates")
 
+    path('countries/', views.CountryList.as_view(), name="country"),
+    path('countries/<int:pk>/', views.CountryDetail.as_view(), name ="country_detail")
 ] 
