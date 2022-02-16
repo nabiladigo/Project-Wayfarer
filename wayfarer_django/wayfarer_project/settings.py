@@ -80,6 +80,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'project-wayfarer',
+        #'USER':'sankofa',
+        #'PASSWORD':'password'
+
     }
 }
 
