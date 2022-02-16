@@ -105,19 +105,19 @@ class Profile(TemplateView):
     template_name ="profile.html"
 
 class Caribbean(TemplateView):
-    template_name ="caribbean.html"
+    template_name ="city.html"
 
 class Morocco(TemplateView):
-    template_name ="morocco/morocco.html"
+    template_name ="city.html"
 
 class France(TemplateView):
-    template_name ="france.html"
+    template_name = "city.html"
 
 class Ocean(TemplateView):
-    template_name ="oceans.html"
+    template_name  = "city.html"
 
 class Emirate(TemplateView):
-    template_name ="emirates.html"
+    template_name ="city.html"
 
 
 
