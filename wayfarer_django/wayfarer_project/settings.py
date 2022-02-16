@@ -82,6 +82,7 @@ DATABASES = {
         'NAME': 'project-wayfarer',
         #'USER':'sankofa',
         #'PASSWORD':'password'
+
     }
 }
 
