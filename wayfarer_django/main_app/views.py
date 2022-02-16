@@ -105,6 +105,7 @@ class Profile(TemplateView):
     template_name ="profile.html"
 
 class Caribbean(TemplateView):
+
     template_name ="city.html"
 
 class Morocco(TemplateView):
