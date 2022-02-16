@@ -7,6 +7,7 @@ urlpatterns = [
     path('about/', views.About.as_view(), name="about"),
     path('profile/<int:pk>', views.Profile.as_view(), name="profile"),
     path('profile/<int:pk>/update', views.ProfileUpdate.as_view(model=models.Profile), name="profile_update"),
+    path('profile/<int:pk>/delete',views.ProfileDelete.as_view(model=models.Profile),name='profile_delete'),
     path('accounts/signup/', views.Signup.as_view(), name="signup"),
     path('cities/', views.CityList.as_view(), name= "city"),
     path('posts/', views.Posts.as_view(), name="post"),

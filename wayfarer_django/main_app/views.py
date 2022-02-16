@@ -112,6 +112,12 @@ class ProfileUpdate(UpdateView):
     def get_success_url(self):
         return reverse('profile', kwargs={'pk': self.object.pk})
 
+class ProfileDelete(DeleteView):
+    model = Profile
+    template_name='profile_delete.html'
+    success_url='/'
+
+
 
 class Caribbean(TemplateView):
 
