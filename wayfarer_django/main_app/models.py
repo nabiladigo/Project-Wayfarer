@@ -12,21 +12,33 @@ class Profile(models.Model):
 
 class Country(models.Model):
     name = models.CharField(max_length=100)
-    image = models.CharField(max_length=250)
+    image = models.CharField(max_length=250, null= True)
 
 
 class City(models.Model):
     name = models.CharField(max_length=100)
-    image = models.CharField(max_length=250)
+    image = models.CharField(max_length=250, null= True)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['name']
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
-    image = models.CharField(max_length=250)
+    image = models.CharField(max_length=250, null= True)
     content = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="posts")
+    # author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="posts")
     city = models.ForeignKey(City, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ['title']
 
 class Comment(models.Model):
     content = models.TextField()
