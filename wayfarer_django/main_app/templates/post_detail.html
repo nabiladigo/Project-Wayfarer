@@ -1,0 +1,38 @@
+{% extends 'base.html' %} 
+{% block title %} Posts{% endblock %}
+{% block content %}
+
+<div class="detail__img">
+    <img  src="{{post.image}}" alt="{{post.title}}" />
+</div>
+
+<div class="detail__name">
+    {% if post.verified_post %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+
+    </div>
+    {% endif %}
+    <h1 class="title">{{post.title}}</h1>
+    <p>{{post.content}}</p>
+</div>
+
+<div class="buttons">
+
+  <a href="{% url 'post_update' post.pk %}" class="button is-info"> 
+      <span class="icon">
+          <i class="fas fa-edit"></i>
+      </span>
+  </a>    
+  <a href="{% url 'post_delete' post.pk %}" class="button is-danger">
+      <span class="icon">
+          <i class="fas fa-trash-alt"></i>
+      </span>
+  </a>
+
+</div>
+
+</div>
+{% endblock %} 

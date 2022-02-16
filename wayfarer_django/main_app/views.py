@@ -1,4 +1,3 @@
-from pipes import Template
 from django.shortcuts import redirect, render
 from django.views import View 
 from django.views.generic.base import TemplateView
@@ -21,50 +20,59 @@ class Home(TemplateView):
 
 class About(TemplateView):
     template_name = "about.html"
-
-
-# @method_decorator(login_required, name='dispatch')    
-
-class Post(TemplateView):
-    template_name = "post.html"
     
+# @method_decorator(login_required, name='dispatch') 
+
+class CityList(TemplateView):
+    template_name ="city.html" 
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         name = self.request.GET.get("name")
         if name != None:
-            context["posts"] = Post.objects.filter(Country.objects.filter(user=self.request.user),name__icontains=name)
+            context["cities"] = City.objects.ilter(name__icontains=name)
             context["header"] = f"Searching for {name}"
         else:
-            context["posts"] = Post.objects.filter(Country.objects.filter(user=self.request.user))
-            context["header"] = "The Perfect City to visit."
-        return context
+            context["cities"] = City.objects.all()
+            context["header"] = "The Perfect place to visit."
+        
+        return context 
 
+class Posts(TemplateView):
+    template_name ="post.html" 
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        name = self.request.GET.get("name")
+        if name != None:
+            context["posts"] = Post.objects.ilter(name__icontains=name)
+            context["header"] = f"Searching for {name}"
+        else:
+            context["posts"] = Post.objects.all()
+            context["header"] = "The Perfect place to visit."
+        
+        return context 
 
 class PostCreate(CreateView):
     model = Post
-    fields = ['title', 'content','date']
+    fields = ['title','image', 'content', 'city']
     template_name = "post_create.html"
-
+    
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(PostCreate, self).form_valid(form)
 
     def get_success_url(self):
         print(self.kwargs)
-        return reverse('post_detail', kwargs={'pk': self.object.pk})
+        return reverse('post')
 
 class PostDetail(DetailView):
     model = Post
     template_name = "post_detail.html"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["posts"] = Post.objects.all()
-        return context
-
 class PostUpdate(UpdateView):
     model = Post
-    fields = ['title','content','date']
+    fields = ['title','content','date', 'city']
     template_name = "post_update.html"
 
     def get_success_url(self):
@@ -72,7 +80,7 @@ class PostUpdate(UpdateView):
 
 class PostDelete(DeleteView):
     model = Post
-    template_name = "post_delete_confirmation.html"
+    template_name = "post_delete.html"
     success_url = "/posts/"
 
 
@@ -92,8 +100,27 @@ class Signup(View):
             context = {"form": form}
             return render(request, "registration/signup.html", context)
 
-
-class Profile(DetailView):
-    model = Profile
+          
+class Profile(TemplateView):
     template_name ="profile.html"
+
+class Caribbean(TemplateView):
+    template_name ="caribbean.html"
+
+class Morocco(TemplateView):
+    template_name ="morocco/morocco.html"
+
+class France(TemplateView):
+    template_name ="france.html"
+
+class Ocean(TemplateView):
+    template_name ="oceans.html"
+
+class Emirate(TemplateView):
+    template_name ="emirates.html"
+
+
+
+
+
 
