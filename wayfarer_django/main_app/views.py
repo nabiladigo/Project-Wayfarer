@@ -72,7 +72,7 @@ class PostDetail(DetailView):
 
 class PostUpdate(UpdateView):
     model = Post
-    fields = ['title','content','date', 'city']
+    fields = ['title','content', 'city']
     template_name = "post_update.html"
 
     def get_success_url(self):
@@ -105,6 +105,12 @@ class Profile(DetailView):
     model = Profile
     template_name ="profile.html"
 
+class ProfileUpdate(UpdateView):
+    model = Profile
+    fields = ['username','bio']
+    template_name = "profile_update.html"
+    def get_success_url(self):
+        return reverse('profile', kwargs={'pk': self.object.pk})
 
 
 class Caribbean(TemplateView):

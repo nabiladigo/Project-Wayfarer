@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     username = models.CharField(max_length=25, null=True)
+    bio = models.TextField(max_length=250, null=True)
     profile_pic = models.CharField(max_length=255)
     current_city = models.ForeignKey('City',null=True, on_delete=models.SET_NULL)
 
@@ -31,7 +32,7 @@ class Post(models.Model):
     image = models.CharField(max_length=250, null= True)
     content = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
-    # author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="posts")
+    author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="posts")
     city = models.ForeignKey(City, on_delete=models.CASCADE)
 
     def __str__(self):
