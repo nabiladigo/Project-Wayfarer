@@ -1,10 +1,11 @@
+
 {% extends 'base.html' %} 
 {% block content %}
 <!-- <h1 class="pt-3"> Posts</h1> -->
   <div class="container">
      <ul>
          <li>
-             <a href="{% url 'country_list' country.pk %}">Morocco</a>
+             <a href="/Morocco">Morocco</a>
          </li>
          <li>
              <a href="/France">France</a>
@@ -41,17 +42,18 @@
         </map>
  </div> -->
 
- <div class=" gallery">
-    {% for city in cities %} 
+
+<div class=" gallery">
+    {% for country in countries %} 
         <div class="card">
-            <a href="{% url 'city_detail' city.pk %}">
+            <a href="{% url 'country_detail' country.pk %}">
                 <div class="card-image">
-                    <img src="{{city.image}}" alt="{{city.name}}"/>
+                    <img src="{{country.image}}" alt="{{country.name}}"/>
                 </div>
                 <div class="card-header">
-                    <h3 class="card-header-title">{{city.name}}</h3>
+                    <h3 class="card-header-title">{{country.name}}</h3>
                 </div>
-            </a>
+           </a>
         </div>
   {% endfor %}    
  </div>
