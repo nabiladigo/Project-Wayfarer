@@ -13,10 +13,10 @@ urlpatterns = [
     path('posts/<int:pk>/', views.PostDetail.as_view(), name="post_detail"),
     path('posts/<int:pk>/update',views.PostUpdate.as_view(), name="post_update"),
     path('posts/<int:pk>/delete',views.PostDelete.as_view(), name="post_delete"),
-    path('Caribbean/', views.Caribbean.as_view(), name ="caribbean"),
-    path('France/', views.France.as_view(), name ="france"),
-    path('Morocco/', views.Morocco.as_view(), name ="morocco"),
-    path('Ocean/', views.Ocean.as_view(), name ="ocean"),
-    path('Emirates/', views.Ocean.as_view(), name ="emirates")
+    # path('Caribbean/', views.Caribbean.as_view(), city ="caribbean"),
+    # path('France/', views.France.as_view(), city ="france"),
+    # path('Morocco/', views.Morocco.as_view(), city ="morocco"),
+    # path('Ocean/', views.Ocean.as_view(), city ="ocean"),
+    # path('Emirates/', views.Ocean.as_view(), city ="emirates")
 
 ] 

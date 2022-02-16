@@ -1,16 +1,5 @@
-/* body {
-    font-family: "Lato", sans-serif;
-    color: #e7e7e7;
-    color: #ffffff;
-    min-height: 100vh;
-} */
-
-/* h1,
-h2,
-h3 {
-    color: #ffffff;
-    font-family: "Lato", sans-serif;
-} */
+/* .navbar { 
+    font-family:Verdana !important; } */
 
 .container {
     display: flex;
@@ -18,29 +7,9 @@ h3 {
     margin: auto;
 }
 
-/* .title {
-    color: black;
-} */
-
-/* .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    justify-content: center;
-    gap: 30px;
-} */
-
-/* .gallery .card {
-    transition: .1s linear;
-} */
-
-/* .gallery .card:hover {
-    transform: scale(1.1);
-    z-index: 10;
-} */
-
-/* .a {
-    font-family: "Montserrat", sans-serif;
-} */
+.content h3 {
+    margin-top: 10px;
+}
 
 p {
     font-size: 12px;
