@@ -1,46 +1,15 @@
-body {
-    font-family: "Lato", sans-serif;
-    background-color: #ffffff;
-    color: #ffffff;
-    min-height: 100vh;
-}
-
-h1,
-h2,
-h3 {
-    color: #ffffff;
-    /* font-family: "Lato", sans-serif; */
-}
+/* .navbar { 
+    font-family:Verdana !important; } */
 
 .container {
     display: flex;
     flex-direction: column;
-
+    margin: auto;
 }
 
-.title {
-    color: black;
+.content h3 {
+    margin-top: 10px;
 }
-
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    justify-content: center;
-    gap: 30px;
-}
-
-.gallery .card {
-    transition: .1s linear;
-}
-
-.gallery .card:hover {
-    transform: scale(1.1);
-    z-index: 10;
-}
-
-/* .a {
-    font-family: "Montserrat", sans-serif;
-} */
 
 p {
     font-size: 12px;
