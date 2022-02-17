@@ -1,0 +1,34 @@
+
+{% extends 'base.html' %} 
+{% block content %}
+
+
+  
+<header class="display-container content hide-small" style="max-width:1500px">
+    <img  class= "image" src="https://static.displate.com/857x1200/displate/2020-03-09/941502e6385250c16c2dedb43955b1d2_79b2ca8a7112ce3bf7a0ea8ad1131438.jpg" alt="Worldmap" usermap="#woldmap" />
+         <!--<map name="worldmap">
+            <area shape="poly" coords="38,73,31,73,37,93,64,96,73,82,104,83,104,71,66,70,50,84,38,73" href="/Central-America-Caribbean/" title="Central America &amp; Caribbean" alt="Central America &amp; Caribbean">
+            <area shape="poly" coords="171,52,171,57,175,57,188,84,202,85,213,56,196,49,171,52" href="/Middle-East/" title="Middle East" alt="Middle East">
+            <area shape="poly" coords="286,98,286,110,253,109,251,139,294,164,333,116,286,98" href="/Oceania/" title="Oceania" alt="Australasia">
+            <area shape="poly" coords="6,36,50,84,67,69,127,25,154,9,60,9,6,36" href="/North-America/" title="North America" alt="North America">
+            <area shape="poly" coords="73,83,60,105,83,162,100,163,116,105,84,82,73,83" href="/South-America/" title="South America" alt="South America">
+            <area shape="poly" coords="171,58,156,56,138,58,125,72,158,140,199,142,199,85,187,85,175,59,171,58" href="/Africa/" title="Africa" alt="Africa">
+            <area shape="poly" coords="194,10,196,49,171,50,170,57,156,55,138,57,128,25,158,11,194,10" href="/Europe/" title="Europe" alt="Europe">
+        </map>-->
+</header>
+<div class="w3-row-padding w3-text-white w3-large"></div>
+
+    {% for country in countries %} 
+        <div class="">
+            <a href="{% url 'country_detail' country.pk %}">
+                <div class="">
+                    <img src="{{country.image}}" alt="{{country.name}}"/>
+                </div>
+                <div class="">
+                    <h3 class="card-header-title">{{country.name}}</h3>
+                </div>
+           </a>
+        </div>
+  {% endfor %}    
+ </div>
+{% endblock %}
