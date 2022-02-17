@@ -1,11 +1,14 @@
 from logging import NullHandler
 from tkinter import CASCADE
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
+from django.contrib.auth.models import AbstractUser
 
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    username = models.CharField(max_length=25, null=True)
+
+# Create your models here.
+class User(AbstractUser):
+    username = models.CharField(max_length=25, unique=True)
+    bio = models.TextField(max_length=250, null=True)
     profile_pic = models.CharField(max_length=255)
     current_city = models.ForeignKey('City',null=True, on_delete=models.SET_NULL)
 
@@ -28,8 +31,9 @@ class Post(models.Model):
     image = models.CharField(max_length=250, null= True)
     content = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="posts", null=True)
-    city = models.ForeignKey(City, on_delete=models.CASCADE, related_name="cities")
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="posts")
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
+
     def __str__(self):
         return self.title
     class Meta:
@@ -38,7 +42,7 @@ class Post(models.Model):
 class Comment(models.Model):
     content = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(Profile,on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
 
