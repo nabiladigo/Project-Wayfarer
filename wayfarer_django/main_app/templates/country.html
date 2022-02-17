@@ -1,36 +1,10 @@
 
 {% extends 'base.html' %} 
 {% block content %}
-<!-- <h1 class="pt-3"> Posts</h1> -->
-  <div class="container">
-     <ul>
-         <li>
-             <a href="/Morocco">Morocco</a>
-         </li>
-         <li>
-             <a href="/France">France</a>
-         </li>
-         <!-- <li>
-             <a href="/Asia">Asia</a>
-         </li>
-         <li>
-             <a href="/S.America">S.America</a>
-         </li> -->
-         <li>
-             <a href="/Caribbean">Caribbean</a>
-         </li>
-         <li>
-             <a href="/Ocean">Oceans&Seas</a>
-         </li>
-         <li>
-             <a href="/Emirates">United Arab Emirates</a>
-         </li>
-     </ul>
- </div>
- 
- <div class=""> 
-     
-    <img src="https://i.imgur.com/2afLHCa.jpg" alt="Worldmap" usermap="#woldmap" />
+
+  
+<header class="display-container content hide-small" style="max-width:1500px">
+    <img  class= "image" src="https://static.displate.com/857x1200/displate/2020-03-09/941502e6385250c16c2dedb43955b1d2_79b2ca8a7112ce3bf7a0ea8ad1131438.jpg" alt="Worldmap" usermap="#woldmap" />
          <!--<map name="worldmap">
             <area shape="poly" coords="38,73,31,73,37,93,64,96,73,82,104,83,104,71,66,70,50,84,38,73" href="/Central-America-Caribbean/" title="Central America &amp; Caribbean" alt="Central America &amp; Caribbean">
             <area shape="poly" coords="171,52,171,57,175,57,188,84,202,85,213,56,196,49,171,52" href="/Middle-East/" title="Middle East" alt="Middle East">
@@ -39,11 +13,9 @@
             <area shape="poly" coords="73,83,60,105,83,162,100,163,116,105,84,82,73,83" href="/South-America/" title="South America" alt="South America">
             <area shape="poly" coords="171,58,156,56,138,58,125,72,158,140,199,142,199,85,187,85,175,59,171,58" href="/Africa/" title="Africa" alt="Africa">
             <area shape="poly" coords="194,10,196,49,171,50,170,57,156,55,138,57,128,25,158,11,194,10" href="/Europe/" title="Europe" alt="Europe">
-        </map>
- </div> -->
-
-
-<div class=" gallery">
+        </map>-->
+</header>
+<div class="w3-row-padding w3-text-white w3-large"></div>
     {% for country in countries %} 
         <div class="card">
             <a href="{% url 'country_detail' country.pk %}">
