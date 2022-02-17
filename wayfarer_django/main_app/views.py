@@ -15,7 +15,19 @@ from django.utils.decorators import method_decorator
 
 # @method_decorator(login_required, name='dispatch')
 class Home(TemplateView):
-     template_name = "home.html"
+    template_name = "home.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        name = self.request.GET.get("name")
+        if name != None:
+            context["cities"] = City.objects.filter(name__icontains=name)
+            context["header"] = f"Searching for {name}"
+        else:
+            context["cities"] = City.objects.all()[:3]
+            context["header"] = "The Perfect place to visit."
+        
+        return context 
 
 
 # @method_decorator(login_required, name='dispatch')
@@ -32,7 +44,7 @@ class CityList(TemplateView):
         context = super().get_context_data(**kwargs)
         name = self.request.GET.get("name")
         if name != None:
-            context["cities"] = City.objects.ilter(name__icontains=name)
+            context["cities"] = City.objects.filter(name__icontains=name)
             context["header"] = f"Searching for {name}"
         else:
             context["cities"] = City.objects.all()
@@ -76,7 +88,7 @@ class PostCreate(CreateView):
 
     def get_success_url(self):
         print(self.kwargs)
-        return reverse('post')
+        return reverse('post_detail', kwargs={'pk': self.object.pk})
 
 class PostDetail(DetailView):
     model = Post
@@ -103,7 +115,7 @@ class CountryList(TemplateView):
         context = super().get_context_data(**kwargs)
         name = self.request.GET.get("name")
         if name != None:
-            context["countries"] = Country.objects.ilter(name__icontains=name)
+            context["countries"] = Country.objects.filter(name__icontains=name)
             context["header"] = f"Searching for {name}"
         else:
             context["countries"] = Country.objects.all()

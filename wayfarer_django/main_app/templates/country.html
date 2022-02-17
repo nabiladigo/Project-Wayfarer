@@ -2,6 +2,7 @@
 {% extends 'base.html' %} 
 {% block content %}
 
+
   
 <header class="display-container content hide-small" style="max-width:1500px">
     <img  class= "image" src="https://static.displate.com/857x1200/displate/2020-03-09/941502e6385250c16c2dedb43955b1d2_79b2ca8a7112ce3bf7a0ea8ad1131438.jpg" alt="Worldmap" usermap="#woldmap" />
@@ -16,13 +17,14 @@
         </map>-->
 </header>
 <div class="w3-row-padding w3-text-white w3-large"></div>
+
     {% for country in countries %} 
-        <div class="card">
+        <div class="">
             <a href="{% url 'country_detail' country.pk %}">
-                <div class="card-image">
+                <div class="">
                     <img src="{{country.image}}" alt="{{country.name}}"/>
                 </div>
-                <div class="card-header">
+                <div class="">
                     <h3 class="card-header-title">{{country.name}}</h3>
                 </div>
            </a>
