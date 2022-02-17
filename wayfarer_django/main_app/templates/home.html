@@ -1,32 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1></h1>
-<!-- <img class="image" src="https://i.imgur.com/NBxB0Yf.jpg" alt="Plane" width="75" height="75"> -->
+
 <header class="display-container content hide-small" style="max-width:1500px">
     <img class="image" src="https://london.ac.uk/sites/default/files/styles/max_1300x1300/public/2018-10/london-aerial-cityscape-river-thames_1.jpg?itok=6LenFxuz" alt="London" width="1500" height="700">
       <div class="container">
         <h3>Wayfarer is <em>the</em> source for user tips and stories from favorited locations around the world!</h3>
-        <!-- <div class="row">
-          <div class="col-lg">
-            <img class="image" src="" alt="London" width="1500" height="700">
-            One of four posts
-          </div>
-          <div class="col-lg">
-            One of four posts
-          </div>
-          <div class="col-lg">
-            One of four posts
-          </div>
-          <div class="col-lg">
-            One of four posts
-          </div>
-        </div>
-      </div> -->
 
-  <div class="w3-container w3-margin-top">
-    <h3><i>So, what destinations inspire you?</i></h3>
-  </div>
+<h1></h1>
+<h1></h1>
+<div class="w3-panel w3-border-top w3-border-bottom"></div>
+<h1></h1>
+<h1></h1>
+    <div class="w3-container w3-margin-top">
+        <h3><i>Tell us, what destinations inspire you?</i></h3>
+    </div>
   <div class="w3-row-padding w3-text-white w3-large">
+    
     <div class="w3-half w3-margin-bottom">
       <div class="w3-display-container">
         <img src="https://www.telegraph.co.uk/content/dam/Travel/Destinations/Asia/India/Mumbai/gateway-of-india-mumbai-xlarge.jpg?imwidth=640" alt="Mumbai" style="width:100%">
@@ -57,12 +47,33 @@
         </div>
         <div class="w3-half w3-margin-bottom">
           <div class="w3-display-container">
-            <img src="https://cloudfront-us-east-1.images.arcpublishing.com/pmn/FDMQO3OJYREVZB33WSZX4P5CRQ.jpg" alt="Philadelphia" style="width:100%">
+            <img src="https://cdn10.phillymag.com/wp-content/uploads/sites/3/2020/05/Philadelphia-virtual-experiences-fb.jpg" alt="Philadelphia" style="width:100%">
             <span class="w3-display-bottomleft w3-padding">Philadelphia</span>
           </div>
         </div>
       </div>
     </div>
+    
   </div>
-      
-{% endblock %}
+  <h1></h1>
+  <h1></h1>
+  <div class="w3-panel w3-border-top w3-border-bottom"></div>
+  <h1></h1>
+  <h1></h1>
+
+  <!-- Contact -->
+  <div class="w3-container">
+    <h4>Contact Wayfarer:</h4>
+    <div class="w3-container w3-margin-bottom">
+        <i class="fa fa-map-marker" style="width:20px"></i> NY, NY<br>
+        <i class="fa fa-phone" style="width:20px"></i> Phone: 212-555-1212<br>
+        <i class="fa fa-envelope" style="width:20px"> </i> Email: travelwayfarer@mail.com<br>
+    </div>
+    <form action="/action_page.php" target="_blank">
+      <p><input class="w3-input w3-padding-6 w3-border" type="text" placeholder="Name" required name="Name"></p>
+      <p><input class="w3-input w3-padding-6 w3-border" type="text" placeholder="Email" required name="Email"></p>
+      <p><input class="w3-input w3-padding-6 w3-border" type="text" placeholder="Message" required name="Message"></p>
+      <p><button class="w3-button w3-black w3-padding-large" type="submit">SEND MESSAGE</button></p>
+    </form>
+
+  {% endblock %}

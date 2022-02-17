@@ -1,3 +1,4 @@
+
 from django.shortcuts import redirect, render
 from django.views import View 
 from django.views.generic.base import TemplateView
@@ -12,9 +13,22 @@ from django.utils.decorators import method_decorator
 
 User = get_user_model()
 
+
 # @method_decorator(login_required, name='dispatch')
 class Home(TemplateView):
-     template_name = "home.html"
+    template_name = "home.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        name = self.request.GET.get("name")
+        if name != None:
+            context["cities"] = City.objects.filter(name__icontains=name)
+            context["header"] = f"Searching for {name}"
+        else:
+            context["cities"] = City.objects.all()[:3]
+            context["header"] = "The Perfect place to visit."
+        
+        return context 
 
 
 # @method_decorator(login_required, name='dispatch')
@@ -31,13 +45,23 @@ class CityList(TemplateView):
         context = super().get_context_data(**kwargs)
         name = self.request.GET.get("name")
         if name != None:
-            context["cities"] = City.objects.ilter(name__icontains=name)
+            context["cities"] = City.objects.filter(name__icontains=name)
             context["header"] = f"Searching for {name}"
         else:
             context["cities"] = City.objects.all()
             context["header"] = "The Perfect place to visit."
         
         return context 
+
+class CityDetail(DetailView):
+    model = City
+    template_name = "city_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["posts"] = Post.objects.filter(city_id= self.object.pk)
+        return context
+
 
 class Posts(TemplateView):
     template_name ="post.html" 
@@ -46,7 +70,7 @@ class Posts(TemplateView):
         context = super().get_context_data(**kwargs)
         name = self.request.GET.get("name")
         if name != None:
-            context["posts"] = Post.objects.ilter(name__icontains=name)
+            context["posts"] = Post.objects.filter(name__icontains=name)
             context["header"] = f"Searching for {name}"
         else:
             context["posts"] = Post.objects.all()
@@ -65,8 +89,9 @@ class PostCreate(CreateView):
         return super(PostCreate, self).form_valid(form)
     
     def get_success_url(self):
-        print(self.kwargs)
-        return reverse('post')
+        return reverse('post_detail', kwargs={'pk': self.object.pk})
+
+        
     
 @method_decorator(login_required, name='dispatch')
 class PostDetail(DetailView):
@@ -89,6 +114,34 @@ class PostDelete(DeleteView):
     success_url = "/posts/"
 
 
+class CountryList(TemplateView):
+    template_name ="country.html" 
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        name = self.request.GET.get("name")
+        if name != None:
+            context["countries"] = Country.objects.filter(name__icontains=name)
+            context["header"] = f"Searching for {name}"
+        else:
+            context["countries"] = Country.objects.all()
+            context["header"] = "The Perfect place to visit."
+        
+        return context 
+
+class CountryDetail(DetailView):
+    model = Country
+    template_name ="country_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["cities"] = City.objects.filter(country_id= self.object.pk)
+        print(self.object.pk)
+        return context
+
+class Profile(TemplateView):
+    template_name ="profile.html"
+    
 class Signup(View):
     def get(self, request):
         form = CustomUserCreationForm()
@@ -124,24 +177,6 @@ class UserDelete(DeleteView):
     model = User
     template_name='profile_delete.html'
     success_url='/'
-
-
-
-class Caribbean(TemplateView):
-
-    template_name ="city.html"
-
-class Morocco(TemplateView):
-    template_name ="city.html"
-
-class France(TemplateView):
-    template_name = "city.html"
-
-class Ocean(TemplateView):
-    template_name  = "city.html"
-
-class Emirate(TemplateView):
-    template_name ="city.html"
 
 
 

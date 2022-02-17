@@ -4,6 +4,7 @@ from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 
+
 # Create your models here.
 class User(AbstractUser):
     username = models.CharField(max_length=25, unique=True)
@@ -15,15 +16,13 @@ class Country(models.Model):
     name = models.CharField(max_length=100)
     image = models.CharField(max_length=250, null= True)
 
-
 class City(models.Model):
     name = models.CharField(max_length=100)
     image = models.CharField(max_length=250, null= True)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
-
     def __str__(self):
         return self.name
-
+        
     class Meta:
         ordering = ['name']
 
@@ -37,7 +36,6 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-
     class Meta:
         ordering = ['title']
 
