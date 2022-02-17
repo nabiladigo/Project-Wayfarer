@@ -1,15 +1,16 @@
 from django.shortcuts import redirect, render
 from django.views import View 
 from django.views.generic.base import TemplateView
-from .models import Country, City, Post, Comment, Profile
+from .models import Country, City, Post, Comment, User
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse
-from django.contrib.auth import login
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, get_user_model
+from .forms import CustomUserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
+User = get_user_model()
 
 # @method_decorator(login_required, name='dispatch')
 class Home(TemplateView):
@@ -53,31 +54,35 @@ class Posts(TemplateView):
         
         return context 
 
+@method_decorator(login_required, name='dispatch')
 class PostCreate(CreateView):
     model = Post
     fields = ['title','image', 'content', 'city']
     template_name = "post_create.html"
     
     def form_valid(self, form):
-        form.instance.user = self.request.user
+        form.instance.author = self.request.user
         return super(PostCreate, self).form_valid(form)
-
+    
     def get_success_url(self):
         print(self.kwargs)
         return reverse('post')
-
+    
+@method_decorator(login_required, name='dispatch')
 class PostDetail(DetailView):
     model = Post
     template_name = "post_detail.html"
 
+@method_decorator(login_required, name='dispatch')
 class PostUpdate(UpdateView):
     model = Post
-    fields = ['title','content', 'city']
+    fields = ['title','content','image', 'city']
     template_name = "post_update.html"
 
     def get_success_url(self):
         return reverse('post_detail', kwargs={'pk': self.object.pk})
-
+        
+@method_decorator(login_required, name='dispatch')
 class PostDelete(DeleteView):
     model = Post
     template_name = "post_delete.html"
@@ -86,34 +91,37 @@ class PostDelete(DeleteView):
 
 class Signup(View):
     def get(self, request):
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
         context = {"form": form}
         return render(request, "registration/signup.html", context)
     
     def post(self, request):
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user= form.save()
             login(request, user)
-            return redirect("profile")
+            return redirect("/")
         else:
             context = {"form": form}
             return render(request, "registration/signup.html", context)
 
-          
-class Profile(DetailView):
-    model = Profile
+         
+@method_decorator(login_required, name='dispatch')
+class User(DetailView):
+    model = User
     template_name ="profile.html"
 
-class ProfileUpdate(UpdateView):
-    model = Profile
-    fields = ['username','bio']
+@method_decorator(login_required, name='dispatch')
+class UserUpdate(UpdateView):
+    model = User
+    fields = ['bio']
     template_name = "profile_update.html"
     def get_success_url(self):
         return reverse('profile', kwargs={'pk': self.object.pk})
 
-class ProfileDelete(DeleteView):
-    model = Profile
+@method_decorator(login_required, name='dispatch')
+class UserDelete(DeleteView):
+    model = User
     template_name='profile_delete.html'
     success_url='/'
 

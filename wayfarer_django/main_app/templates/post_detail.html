@@ -16,9 +16,9 @@
     </div>
     {% endif %}
     <h1 class="title">{{post.title}}</h1>
-    <p>{{post.content}}</p>
+    <p>{{post.content}} user id: {{ user }} author_id: {{ post.author }}</p>
 </div>
-
+{% if user.is_authenticated and user == post.author %}
 <div class="buttons">
 
   <a href="{% url 'post_update' post.pk %}" class="button is-info"> 
@@ -31,6 +31,7 @@
           <i class="fas fa-trash-alt"></i>
       </span>
   </a>
+{% endif %}
 
   
 </div>

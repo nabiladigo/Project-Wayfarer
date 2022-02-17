@@ -5,21 +5,21 @@
    <div class="container-fluid p-4">
     <div class="row p-4  bg-dark mt-5" >
         <div class="col-md-2 ">
-            <img class="img-thumbnail img-fluid" src="{{ profile.profile_pic }}" alt="{{profile.username}} profile pic">
+            <img class="img-thumbnail img-fluid" src="{{ user.profile_pic }}" alt="{{user.username}} profile pic">
         </div>
         <div class="col">
             <div class="row pl-3 text-white">
-                <h1>{{ profile.username }}</h1>
+                <h1>{{ user.username }}</h1>
             </div>
             <div class="row pl-3 text-white">
-                <h6>{{ profile.bio }}</h6>
+                <h6>{{ user.bio }}</h6>
             </div>
         </div>
         <div class="col">
                 <div class="buttons justify-content-end align-items-end">
                     
-                    <a href="{% url 'profile_update' profile.pk %}" class="button is-info">Edit</a>
-                    <a href="{% url 'profile_delete' profile.pk%}" class="button is-danger">Delete</a>
+                    <a href="{% url 'profile_update' user.pk %}" class="button is-info">Edit</a>
+                    <a href="{% url 'profile_delete' user.pk%}" class="button is-danger">Delete</a>
                 </div>
        
         </div>
@@ -28,7 +28,7 @@
         <h2 class="text-black-50 pt-3">Posts</h2>
     </div>
         <div class="row h-50">
-            {% for post in profile.posts.all %}
+            {% for post in user.posts.all %}
         
                 <div class="thumbnail col-3">
                     <a href="{% url 'post_detail' post.pk %}"><img class="img-thumbnail" src="{{ post.image }}"></a>
