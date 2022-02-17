@@ -32,7 +32,7 @@ class CityList(TemplateView):
         context = super().get_context_data(**kwargs)
         name = self.request.GET.get("name")
         if name != None:
-            context["cities"] = City.objects.ilter(name__icontains=name)
+            context["cities"] = City.objects.filter(name__icontains=name)
             context["header"] = f"Searching for {name}"
         else:
             context["cities"] = City.objects.all()
@@ -103,7 +103,7 @@ class CountryList(TemplateView):
         context = super().get_context_data(**kwargs)
         name = self.request.GET.get("name")
         if name != None:
-            context["countries"] = Country.objects.ilter(name__icontains=name)
+            context["countries"] = Country.objects.filter(name__icontains=name)
             context["header"] = f"Searching for {name}"
         else:
             context["countries"] = Country.objects.all()
