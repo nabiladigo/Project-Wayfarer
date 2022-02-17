@@ -1,17 +1,28 @@
+
+.black-link {
+  color: black;
+}
+
 .container {
-    display: flex;
-    flex-direction: column;
-    margin: auto;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  justify-content: space-around;
 }
 
 .content h3 {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 span {
-    text-shadow: 1px 1px 2px black;
+  text-shadow: 1px 1px 2px black;
 }
 
 p {
-    font-size: 12px;
+  font-size: 12px;
+}
+.container-city {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
