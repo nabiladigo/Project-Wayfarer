@@ -11,18 +11,14 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 
-# @method_decorator(login_required, name='dispatch')
+
 class Home(TemplateView):
      template_name = "home.html"
 
 
-# @method_decorator(login_required, name='dispatch')
-
 class About(TemplateView):
     template_name = "about.html"
 
-
-# @method_decorator(login_required, name='dispatch')    
 
 class Post(TemplateView):
     template_name = "post.html"
