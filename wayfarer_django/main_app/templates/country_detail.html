@@ -1,0 +1,30 @@
+{% extends 'base.html' %} 
+{% block content %}
+
+<h1>Welcome to {{country.name}}!</h1>
+
+<div class="detail__name">
+    {% if country.verified_country %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        
+    </div>
+    {% endif %}
+
+<div class=" gallery">
+    {% for city in cities %} 
+        <div class="card">
+            <a href="{% url 'city_detail' city.pk %}">
+                <div class="card-image">
+                    <img src="{{city.image}}" alt="{{city.name}}"/>
+                </div>
+                <div class="card-header">
+                    <h3 class="card-header-title">{{city.name}}</h3>
+                </div>
+            </a>
+        </div>
+  {% endfor %}    
+ </div>
+{% endblock %}

@@ -1,35 +1,28 @@
-body {
-    background-color: #ffffff;
-    color: #ffffff;
-    min-height: 100vh;
+
+.black-link {
+  color: black;
 }
 
-h1,
-h2,
-h3 {
-    color: #ffffff;
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  justify-content: space-around;
 }
 
-.title {
-    color: #ffffff;
+.content h3 {
+  margin-top: 10px;
 }
 
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    justify-content: center;
-    gap: 30px;
-}
-
-.gallery .card {
-    transition: .1s linear;
-}
-
-.gallery .card:hover {
-    transform: scale(1.1);
-    z-index: 10;
+span {
+  text-shadow: 1px 1px 2px black;
 }
 
 p {
-    font-size: 12px;
+  font-size: 12px;
+}
+.container-city {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }

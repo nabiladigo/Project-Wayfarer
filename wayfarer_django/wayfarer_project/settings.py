@@ -40,9 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main_app',
+    'debug_toolbar'
 ]
 
+AUTH_USER_MODEL = 'main_app.User'
+
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -50,9 +54,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'wayfarer_project.urls'
+
+INTERNAL_IPS = [
+    #...
+    '127.0.0.1',
+    #...
+]
 
 TEMPLATES = [
     {
@@ -79,7 +90,9 @@ WSGI_APPLICATION = 'wayfarer_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'project-wayfarer',
+        'NAME': 'project_wayfarer',
+       
+
     }
 }
 
@@ -115,6 +128,8 @@ USE_I18N = True
 USE_TZ = True
 
 
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
@@ -125,3 +140,6 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR,'main_app/static')]
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

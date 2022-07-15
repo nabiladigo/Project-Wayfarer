@@ -1,3 +1,51 @@
-{% extends 'base.html' %} {% block content %}
-<h1>Profile</h1>
+
+{% extends 'base.html' %} 
+{% block content %}
+
+   <div class="container-fluid p-4">
+    <div class="row p-4  bg-dark mt-5" >
+        <div class="col-md-2 ">
+            <img class="img-thumbnail img-fluid" src="{{ user.profile_pic }}" alt="{{user.username}} profile pic">
+        </div>
+        <div class="col">
+            <div class="row pl-3 text-white">
+                <h1>{{ user.username }}</h1>
+            </div>
+            <div class="row pl-3 text-white">
+                <h6>{{ user.bio }}</h6>
+            </div>
+
+            
+        </div>
+        <div class="col">
+            <div class="row pl-3 text-white">
+                <h3>Current City</h3>
+                <h5> {{user.current_city}}</h5>
+            </div>
+        </div>
+        <div class="col">
+                <div class="buttons justify-content-end align-items-end">
+                    
+                    <a href="{% url 'profile_update' user.pk %}" class="button is-info">Edit</a>
+                    <a href="{% url 'profile_delete' user.pk%}" class="button is-danger">Delete</a>
+                </div>
+               
+       
+        </div>
+    </div>
+    <div class="row">
+        <h2 class="text-black-50 pt-3">Posts</h2>
+    </div>
+        <div class="row h-50">
+            {% for post in user.posts.all %}
+        
+                <div class="thumbnail col-3">
+                    <a href="{% url 'post_detail' post.pk %}"><img class="img-thumbnail" src="{{ post.image }}"></a>
+                    <h6 class="text-black-100 pl-1 pt-1">{{ post.title }}</h6>
+                    <p class="text-truncate pl-1">{{post.content}}</p>
+                </div>
+            {% endfor %}
+        </div>
+</div> 
+
 {% endblock %}
